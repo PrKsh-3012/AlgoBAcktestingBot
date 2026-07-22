@@ -53,6 +53,9 @@ async def lifespan(app: FastAPI):
         _ib_instance.disconnect()
 
 app = FastAPI(title="The FinTech Anchor API", version="7.0", lifespan=lifespan)
+@app.get("/")
+def read_root():
+    return {"status": "online", "message": "AlgoBacktestingBot API is running successfully!"}
 
 app.add_middleware(
     CORSMiddleware,
