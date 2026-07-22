@@ -45,9 +45,31 @@ Everything runs through a single FastAPI backend and renders in a dark-mode, dat
  
 ## 🎬 Demo
  
-> 📸 *Add a screenshot or GIF of the Command Deck here — a working terminal view is the single best thing this README can show.*
- 
-<!-- ![Demo](docs/demo.gif) -->
+## 🎬 Terminal Interface Previews
+
+<div align="center">
+
+### 🤖 AI Agent Swarm Hub
+*Multi-model LLM consensus engine evaluating prediction market probabilities and calculating Kelly-criterion position sizing.*  
+<br>
+<img src="frontend/screenshots/swarmtab.png" width="90%" alt="AI Agent Swarm Tab">
+
+---
+
+### ⚖️ Cross-Platform Arbitrage Scanner
+*Real-time spread analytics tracking binary contract pricing discrepancies across Polymarket and Probo order books.*  
+<br>
+<img src="frontend/screenshots/polyprobe.png" width="90%" alt="Arbitrage Scanner">
+
+---
+
+### 📊 Multi-Model Quant Backtester
+*Vectorized 5-year historical asset performance curves comparing market benchmarks against SMA, RSI, MACD, and Linear Regression models.*  
+<br>
+<img src="frontend/screenshots/multimodal.png" width="90%" alt="Multi-Model Quant Backtester">
+
+</div>
+
  
 ## 🚀 Features
  
