@@ -331,7 +331,7 @@ function App() {
                 ) : null}
               </div>
 
-              <div className="bg-gradient-to-br from-slate-900 to-indigo-950 p-6 md:p-8 rounded-3xl border border-indigo-900/50 shadow-2xl flex flex-col justify-between space-y-6 backdrop-blur">
+              <div className="bg-linear-to-br from-slate-900 to-indigo-950 p-6 md:p-8 rounded-3xl border border-indigo-900/50 shadow-2xl flex flex-col justify-between space-y-6 backdrop-blur">
                 <div>
                   <h3 className="text-indigo-400 text-xs font-bold uppercase tracking-wider flex items-center gap-2">
                     <Zap className="w-4 h-4 fill-current" /> Dual-Leg Smart Router
@@ -368,7 +368,7 @@ function App() {
           <div className="space-y-6 animate-fadeIn">
             
             <div className="flex flex-wrap items-center justify-between gap-4 bg-slate-900/90 p-4 rounded-3xl border border-slate-800/80 shadow-2xl backdrop-blur">
-              <div className="relative flex-1 min-w-[280px]">
+              <div className="relative flex-1 min-w-70">
                 <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 ml-1">Target Asset Ticker</label>
                 <div className="flex items-center bg-slate-950 border border-slate-700/80 rounded-2xl px-4 py-2 focus-within:border-blue-500 shadow-inner">
                   <Search className="w-4 h-4 text-slate-400 mr-3 shrink-0" />
@@ -398,7 +398,7 @@ function App() {
                         className="px-4 py-3 hover:bg-slate-800 cursor-pointer flex justify-between items-center text-xs border-b border-slate-800/50 last:border-none transition-colors"
                       >
                         <span className="font-bold text-white font-mono">{item.symbol}</span>
-                        <span className="text-slate-400 truncate max-w-[200px]">{item.name}</span>
+                        <span className="text-slate-400 truncate max-w-50">{item.name}</span>
                       </div>
                     ))}
                   </div>
