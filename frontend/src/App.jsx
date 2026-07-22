@@ -3,6 +3,9 @@ import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Activity, Play, Loader2, Search, Zap, CheckCircle2, ShieldCheck, Layers, Cpu, BrainCircuit, ArrowRightLeft } from 'lucide-react';
 
+// Automatically points to Railway in production, or localhost during local development
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+
 function App() {
   const [activeTab, setActiveTab] = useState('agents'); // 'agents', 'arbitrage', 'backtest'
   
@@ -37,7 +40,7 @@ function App() {
     const fetchSuggestions = async () => {
       if (query.length > 1 && query !== ticker) {
         try {
-          const res = await axios.get(`http://127.0.0.1:8000/search?query=${query}`);
+          const res = await axios.get(`${API_BASE_URL}/search?query=${query}`);
           setSuggestions(res.data);
         } catch (e) {
           console.error(e);
@@ -53,7 +56,7 @@ function App() {
   const runAgentSwarm = async () => {
     setLoadingAgent(true);
     try {
-      const res = await axios.get(`http://127.0.0.1:8000/agent/analyze?market=${encodeURIComponent(marketQuery)}&odds=${marketOdds}`);
+      const res = await axios.get(`${API_BASE_URL}/agent/analyze?market=${encodeURIComponent(marketQuery)}&odds=${marketOdds}`);
       setAgentResult(res.data.agent_decision);
     } catch (e) {
       alert("Failed to reach LLM Agent backend.");
@@ -64,7 +67,7 @@ function App() {
   const fetchArbScanner = async () => {
     setLoadingArb(true);
     try {
-      const res = await axios.get('http://127.0.0.1:8000/arbitrage/live-scan');
+      const res = await axios.get(`${API_BASE_URL}/arbitrage/live-scan`);
       setArbData(res.data.live_arbitrage);
     } catch (e) {
       console.error("Failed to fetch arbitrage scanner data");
@@ -76,7 +79,7 @@ function App() {
     if (!arbData) return;
     setExecutingArb(true);
     try {
-      const res = await axios.post(`http://127.0.0.1:8000/arbitrage/execute-arb?poly_price=${arbData.poly_price}&probo_price=${arbData.probo_price}`);
+      const res = await axios.post(`${API_BASE_URL}/arbitrage/execute-arb?poly_price=${arbData.poly_price}&probo_price=${arbData.probo_price}`);
       setArbStatus(res.data.message);
     } catch (e) {
       setArbStatus("Execution failed.");
@@ -88,7 +91,7 @@ function App() {
     setLoadingBacktest(true);
     setTradingStatus(null);
     try {
-      const res = await axios.get(`http://127.0.0.1:8000/backtest?ticker=${targetTicker}`);
+      const res = await axios.get(`${API_BASE_URL}/backtest?ticker=${targetTicker}`);
       setBacktestData(res.data);
       setSuggestions([]);
     } catch (error) {
@@ -100,7 +103,7 @@ function App() {
   const executeLiveTrade = async (action, targetTicker = ticker) => {
     setExecutingTrade(true);
     try {
-      const res = await axios.post(`http://127.0.0.1:8000/trade/execute?ticker=${targetTicker}&action=${action}`);
+      const res = await axios.post(`${API_BASE_URL}/trade/execute?ticker=${targetTicker}&action=${action}`);
       setTradingStatus(res.data.message);
     } catch (e) {
       setTradingStatus("Failed to execute paper trade.");
@@ -331,7 +334,7 @@ function App() {
                 ) : null}
               </div>
 
-              <div className="bg-linear-to-br from-slate-900 to-indigo-950 p-6 md:p-8 rounded-3xl border border-indigo-900/50 shadow-2xl flex flex-col justify-between space-y-6 backdrop-blur">
+              <div className="bg-gradient-to-br from-slate-900 to-indigo-950 p-6 md:p-8 rounded-3xl border border-indigo-900/50 shadow-2xl flex flex-col justify-between space-y-6 backdrop-blur">
                 <div>
                   <h3 className="text-indigo-400 text-xs font-bold uppercase tracking-wider flex items-center gap-2">
                     <Zap className="w-4 h-4 fill-current" /> Dual-Leg Smart Router
